@@ -1,35 +1,29 @@
-# 刷题笔记
+# 算法笔记
 
 [经典总结1](https://github.com/MisterBooo/LeetCodeAnimation)
 
-## 经典问题
+## 1. 经典问题
 
-- #### 排序问题
+- #### 排序
 
   - 稳定性：两个相等的数,经过排序之后,其在序列的前后位置顺序不变，则是稳定的。
     - **稳定性排序**：冒泡排序，插入排序、归并排序、基数排序
     - **不稳定排序**：选择排序、快速排序、希尔排序、堆排序
   - 原地排序： 不占用额外内存资源的排序
 
-- #### 卡特兰数
-
-- #### N皇后
-
-- #### 孤岛问题
-
 - #### 分苹果问题
 
-##### 问题存在两种形式，第一种是给出所有符合条件的解，这时使用递归的方法解是比较好的，另一种是让给出解的个数，这时候用数学分析的办法比较快。
+**一种是列出符合条件的解，可使用递归；**
+
+**一种是让给出解的个数，用数学分析*。**
 
 > 把M个同样的苹果放在N个同样的盘子里，允许有的盘子空着不放，问共有多少种不同的分法？M, N为自然数。说明：如有7个苹果，2个盘子，则(5, 1, 1)和(1, 5, 1)和(1, 1, 5)都是同一种分法。
 >
-> 输入：
-> 	第一行一个整数表示数据的组数（多组数据），对于每组数据第一行是苹果个数M (1 ≤ m ≤ 100) ，第二行是盘子个数N(1 ≤ n ≤ 100)。
-> 输出：
-> 	每组数据输出一行,放苹果的方法个数。
+> 输入：     第一行一个整数表示数据的组数（多组数据），对于每组数据第一行是苹果个数M (1 ≤ m ≤ 100) ，第二行是盘子个数N(1 ≤ n ≤ 100)。
+> 输出：    每组数据输出一行,放苹果的方法个数。
 
 ```c
-// 递归的方式列出所有解
+// M个苹果， N个盘子
 int solution(int m,int n){   
     if(m==0||n==1)    
         return 1;     
@@ -40,9 +34,131 @@ int solution(int m,int n){
 } 
 ```
 
+- #### 斐波那契（[青蛙跳台阶](https://www.nowcoder.com/practice/8c82a5b80378478f9484d87d1c5f12a4?tpId=13&tqId=11161&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)）
 
+**要求计算第n项，非递归的实现**
 
-- #### 毒药问题
+```c
+    int Fibonacci(int n) {
+        if (n==0)
+            return 0;
+        int data[3] = {1, 0, 1};
+        for(int i=0; i<n-1; i++){
+            data[2] = data[1] + data[0];
+            data[1] = data[0];
+            data[0] = data[2];
+        }
+        return data[2];
+    }
+```
+
+- #### [二叉树重建](https://www.nowcoder.com/practice/8a19cbe657394eeaac2f6ea9b0f6fcf6?tpId=13&tqId=11157&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)（先序+中序->二叉树）
+
+简单的递归实现，思路清晰，简单的思想就是通过建立子函数，每次传入子树的先序和中序序列，递归求解
+
+```c++
+TreeNode* reConstructBinaryTree(vector<int> pre, vector<int> vin) {
+    TreeNode* root = reConstructBinaryTree(pre, 0, pre.size()-1, vin, 0, vin.size()-1);
+    return root;
+}
+TreeNode* reConstructBinaryTree(vector<int> pre, int sp, int ep, vector<int> in, int si, int ei) {
+    if(sp > ep||si > ei)
+    	return NULL;
+    TreeNode* root =new TreeNode(pre[sp]);
+
+    for(int i=si; i<=ei; i++)
+    if(in[i]==pre[sp]){
+        root->left  = reConstructBinaryTree(pre, sp+1, sp+i-si, in, si, i-1);
+        root->right = reConstructBinaryTree(pre, i-si+sp+1, ep, in, i+1, ei);
+        break;
+    }
+	return root;
+}
+```
+- #### 出栈顺序验证（[栈模拟](https://www.nowcoder.com/practice/d77d11405cc7470d82554cb392585106?tpId=13&tqId=11174&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)）
+
+```c++
+bool IsPopOrder(vector<int> pushV,vector<int> popV) {
+    if(pushV.size() == 0) return false;
+    vector<int> stack; int j = 0;
+    for(int i=0; i<pushV.size(); i++){
+        stack.push_back(pushV[i]);
+        while(j < popV.size() && stack.back() == popV[j]){
+            stack.pop_back();
+            j++;
+        }
+    }
+    return stack.empty();
+}
+```
+- #### 查找二叉树转双链表([链接](https://www.nowcoder.com/practice/947f6eb80d944a84850b0538bf0ec3a5?tpId=13&tqId=11179&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking))
+
+```c++
+    TreeNode* pre      = NULL;
+    TreeNode* lastLeft = NULL;
+    TreeNode* Convert(TreeNode* pRootOfTree)
+    {
+        if(pRootOfTree==NULL) return NULL;
+        Convert(pRootOfTree->left);
+        pRootOfTree->left = pre;
+        if(pre != NULL)
+            pre->right = pRootOfTree;
+        pre = pRootOfTree;
+        lastLeft = lastLeft==NULL ? pRootOfTree : lastLeft;
+        Convert(pRootOfTree->right);
+        return lastLeft;
+    }
+```
+
+- ##### 逆序数对
+
+```c++
+/* 在数组中的两个数字，如果前面一个数字大于后面的数字，则这两个数字组成一个逆序对。输入一个数组，求出这个数组中的逆序对的总数。
+*/
+int divide(vector<int>& nums, vector<int>& res, int head, int tail){
+        if(head>=tail) return 0;
+        int mid = (tail + head) / 2;
+        int cnt = divide(nums, res, head, mid) + divide(nums, res, mid+1, tail);
+        int i = head, j = mid+1, p = head;
+        while(i<=mid && j<=tail){
+            if(nums[i]<=nums[j]){
+                cnt += (j - (mid+1));
+                res[p++] = nums[i++];
+            } else {
+                res[p++] = nums[j++];
+            }
+        }
+        for(int m=i; m<=mid; ++m){
+            cnt += (j - (mid + 1));
+            res[p++] = nums[m];
+        }
+        for(int m=j; m<=tail; ++m)
+            res[p++] = nums[m];
+        copy(res.begin()+head, res.begin()+tail+1, nums.begin()+head);
+        return cnt;
+    }
+    
+    int reversePairs(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> res(n);
+        return divide(nums, res,  0, n-1);
+    }
+```
+
+- ##### 子串匹配
+
+  - 最大对称子串问题
+  - 最大公子串问题
+  - 子串匹配问题
+  - 最大公子序列问题
+
+- ##### 毒药问题
+
+- ##### 卡特兰数
+
+- ##### N皇后
+
+- ##### 孤岛问题
 
 ## 数据结构
 
@@ -80,11 +196,6 @@ int solution(int m,int n){
 
   - ##### 习题2
 
-- #### 平衡二叉树
-
-
-
-- #### 其他
 
 
 

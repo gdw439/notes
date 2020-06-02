@@ -32,3 +32,24 @@ ssh-keygen -t rsa -C "email@example.com"
 # 5. 拷贝id_rsa.pub中所有内容，粘贴到github的key中
 ```
 
+- #### update local code
+
+```shell
+git commit -m "添加你的注释,一般是一些更改信息"
+```
+
+- #### add new file to git
+
+```shell
+# .默认将所有文件都添加
+git add . 
+```
+
+- #### pull code to remote hub
+
+```shell
+git pull origin master
+# 上传
+git push origin master
+```
+

@@ -2,7 +2,15 @@
 
 [经典总结1](https://github.com/MisterBooo/LeetCodeAnimation)
 
-## 1. 经典问题
+## 算法专题
+
+- #### 动态规划
+
+![img](https://pic.leetcode-cn.com/1f95da43d1bdeebdd1213bb804034ddc5f906dc61451cd63f2b5ab5d0eb33b33-%E3%80%8C%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%8D%E9%97%AE%E9%A2%98%E6%80%9D%E8%80%83%E6%96%B9%E5%90%91.png)
+
+- #### 其他
+
+## 经典问题
 
 - #### 排序
 
@@ -230,6 +238,30 @@ int search(vector<int>& nums, int target) {
         }
         return -1;
     }
+```
+
+- #### [ 在排序数组中查找数字 I](https://leetcode-cn.com/problems/zai-pai-xu-shu-zu-zhong-cha-zhao-shu-zi-lcof/)
+
+```c++
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        int i = find (nums, 0, nums.size(), target + 0.5);
+        if (i < 1 || nums[i - 1] != target) return 0;
+        return i - find (nums, 0, i, target - 0.5);    
+    }
+    
+    int find (vector<int>& nums, int i, int j, double target) {
+        int mid;
+        while (i < j) {
+            mid = i + (j - i) / 2;
+            if (nums[mid] < target) i = mid + 1;
+            else j = mid;
+        }
+        
+        return i;
+    }
+};
 ```
 
 
@@ -730,7 +762,7 @@ SSL是Netscape开发的安全协议，广泛用于基于万维网的各种网络
 
 
 
-# 语言基础
+# C语言基础
 
 - #### static
 
@@ -744,14 +776,10 @@ SSL是Netscape开发的安全协议，广泛用于基于万维网的各种网络
 
 2、static修饰全局变量与函数，成为静态全局变量与静态函数。
 
- 
-
 三、相关涉及概念
 　　可能会疑惑，修饰全局变量与修饰函数怎么会是一个用法？
 
-　　static涉及的东西也比较多，以下有几个概念需要明白。
-
- 
+　　static涉及的东西也比较多，以下有几个概念需要明白。 
 
  1、什么是存储类
 　　简单的说也就是存储类型，c中变量是在哪里存放的？内存是怎么管理的？

@@ -1,5 +1,7 @@
 # 计算机网络
 
+来源：https://www.nowcoder.com/discuss/429605?type=0&order=7&pos=6&page=1&channel=1000&source_id=discuss_center_0
+
 ## 网络分层 ⭐⭐
 
 OSI 将网络分为七层：应用层、表示层、会话层、运输层、网络层、数据链路层、物理层。OSI 七层协议体系结构概念清除，理论完善，但是既复杂也不实用。

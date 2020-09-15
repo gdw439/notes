@@ -6,7 +6,7 @@
 
 - #### 动态规划
 
-![img](https://pic.leetcode-cn.com/1f95da43d1bdeebdd1213bb804034ddc5f906dc61451cd63f2b5ab5d0eb33b33-%E3%80%8C%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%8D%E9%97%AE%E9%A2%98%E6%80%9D%E8%80%83%E6%96%B9%E5%90%91.png)
+<img src="https://pic.leetcode-cn.com/1f95da43d1bdeebdd1213bb804034ddc5f906dc61451cd63f2b5ab5d0eb33b33-%E3%80%8C%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%8D%E9%97%AE%E9%A2%98%E6%80%9D%E8%80%83%E6%96%B9%E5%90%91.png" alt="img" style="zoom:67%;" />
 
 - #### 其他
 
@@ -154,13 +154,6 @@ int divide(vector<int>& nums, vector<int>& res, int head, int tail){
     }
 ```
 
-- ##### 子串匹配
-
-  - 最大对称子串问题
-  - 最大公子串问题
-  - 子串匹配问题
-  - 最大公子序列问题
-
 - #### 字典序算法
 
 ```shell
@@ -210,9 +203,11 @@ public:
 
 ```
 
+- #### 搜索旋转排序数组（[字节经典](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)）
 
+题目：假设排序数组进行了循环移N位操作，试用最少的时间查找某个值是否存在
 
-- #### [搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)（字节跳动经典）
+题解：修改后的二分查找算法
 
 ```c++
 // 上升序列数组经过循环移位后，二分法查找某一元素是否存在
@@ -264,13 +259,63 @@ public:
 };
 ```
 
+- ##### 扔鸡蛋问题（[经典动态规划]( https://leetcode-cn.com/problems/super-egg-drop/solution/ji-dan-diao-luo-by-leetcode-solution-2/ )）
 
+  题目：有M层楼，已知在第N层楼以上掉落鸡蛋会碎，给你K个鸡蛋，让你用最少的操作T试探出这一楼层N。
+
+  思路：逆向思维。
+
+  该问题等价于：给你T次操作和K个鸡蛋，我们保证能找到的最高的楼层N。于是，当我们扔下鸡蛋，存在两种情况：
+
+  1. 鸡蛋没碎，这样在该楼层上方存在f(T-1,K)层楼；
+  2. 鸡蛋碎了，这样在该楼层下方可以检测f(T-1,K-1)层楼；
+
+  其状态转移方程为：
+  $$
+  f(T,K)=1+f(T-1,K-1)+f(T-1,K)
+  $$
+  边界条件为：$T\geq1$时，$f(T,1)=T$，当$K\geq1$时， $f(1, K)=1$。
+
+  ```c++
+  class Solution {
+  public:
+      int superEggDrop(int K, int N) {
+          if (N == 1) {
+              return 1;
+          }
+          vector<vector<int>> f(N + 1, vector<int>(K + 1));
+          for (int i = 1; i <= K; ++i) {
+              f[1][i] = 1;
+          }
+          int ans = -1;
+          for (int i = 2; i <= N; ++i) {
+              for (int j = 1; j <= K; ++j) {
+                  f[i][j] = 1 + f[i - 1][j - 1] + f[i - 1][j];
+              }
+              if (f[i][K] >= N) {
+                  ans = i;
+                  break;
+              }
+          }
+          return ans;
+      }
+  };
+  ```
+
+  
 
 - ##### 毒药问题
 
 - ##### 卡特兰数
 
 - ##### 孤岛问题
+
+- ##### 子串匹配
+
+  - 最大对称子串问题
+  - 最大公子串问题
+  - 子串匹配问题
+  - 最大公子序列问题
 
 ## 数据结构
 

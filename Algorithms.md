@@ -313,9 +313,31 @@ public:
 - ##### 子串匹配
 
   - 最大对称子串问题
+  
   - 最大公子串问题
+  
   - 子串匹配问题
+  
   - 最大公子序列问题
+  
+  - [最长无重复子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/solution/javati-jie-3wu-zhong-fu-zi-fu-de-zui-chang-zi-chua/)
+  
+    ```c++
+    // 滑窗调整窗口的左边界和右边界，保持滑窗内不重复，同时求取最大值，思路
+    int lengthOfLongestSubstring(string s) {
+        vector<int> m(128, 0);
+        int ans = 0;
+        int i = 0;
+        for (int j = 0; j < s.size(); j++) {
+            i = max(i, m[s[j]]);
+            m[s[j]] = j + 1;
+            ans = max(ans, j - i + 1);
+        }
+        return ans;
+    }
+    ```
+  
+    
 
 ## 数据结构
 
@@ -352,3 +374,13 @@ public:
   > 后序遍历：DCBHKGFEA
 
   - ##### 习题2
+  
+- ####  给定坐标系内的一个多边形和一个点，怎么判断该点是否在矩形内部？ 
+
+  - 思路：通过由该点射出的射线与各边交点的奇偶性判断是否在多边形内部。
+
+   ![img](pic/061456221234057.jpg) 
+
+- #### 哈夫曼树构造过程：[链接](https://blog.csdn.net/qq_29519041/article/details/81428934)
+
+T

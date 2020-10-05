@@ -1,5 +1,7 @@
 # 编程基础
 
+## 编程常用
+
 ### 函数技巧
 
 - ##### 输入函数
@@ -22,7 +24,68 @@
 > ```
 >
 
-#### static
+### 抽象容器
+
+- #### vector
+
+1. 构造函数
+   vector():创建一个空vector
+   vector(int nSize):创建一个vector,元素个数为nSize
+   vector(int nSize,const t& t):创建一个vector，元素个数为nSize,且值均为t
+   vector(const vector&):复制构造函数
+   vector(begin,end):复制[begin,end)区间内另一个数组的元素到vector中
+2. 增加函数
+   void push_back(const T& x):向量尾部增加一个元素X
+   iterator insert(iterator it,const T& x):向量中迭代器指向元素前增加一个元素x
+   iterator insert(iterator it,int n,const T& x):向量中迭代器指向元素前增加n个相同的元素x
+   iterator insert(iterator it,const_iterator first,const_iterator last):向量中迭代器指向元素前插入另一个相同类型向量的[first,last)间的数据
+3. 删除函数
+   iterator erase(iterator it):删除向量中迭代器指向元素
+   iterator erase(iterator first,iterator last):删除向量中[first,last)中元素
+   void pop_back():删除向量中最后一个元素
+   void clear():清空向量中所有元素
+4. 遍历函数
+   reference at(int pos):返回pos位置元素的引用
+   reference front():返回首元素的引用
+   reference back():返回尾元素的引用
+   iterator begin():返回向量头指针，指向第一个元素
+   iterator end():返回向量尾指针，指向向量最后一个元素的下一个位置
+   reverse_iterator rbegin():反向迭代器，指向最后一个元素
+   reverse_iterator rend():反向迭代器，指向第一个元素之前的位置
+5. 判断函数
+   bool empty() const:判断向量是否为空，若为空，则向量中无元素
+6. 大小函数
+   int size() const:返回向量中元素的个数
+   int capacity() const:返回当前向量所能容纳的最大元素值
+   int max_size() const:返回最大可允许的vector元素数量值
+7. 其他函数
+   void swap(vector&):交换两个同类型向量的数据
+   void assign(int n,const T& x):设置向量中第n个元素的值为x
+   void assign(const_iterator first,const_iterator last):向量中[first,last)中元素设置成当前向量元素
+
+- #### map
+
+  - 插入元素
+
+  ```c++
+  // 定义一个map对象
+  map<int, string> mapStudent;
+   
+  // 第一种 用insert函數插入pair
+  mapStudent.insert(pair<int, string>(000, "student_zero"));
+   
+  // 第二种 用insert函数插入value_type数据
+  mapStudent.insert(map<int, string>::value_type(001, "student_one"));
+   
+  // 第三种 用"array"方式插入
+  mapStudent[123] = "student_first";
+  mapStudent[456] = "student_second";
+  ```
+
+
+## 面试常问
+
+### static标识符
 
 一、概述
 在c语言中static恰当的使用能让程序更加完美，细节上的严谨，代码会更好，也更利于程序的维护与扩展。
@@ -111,7 +174,7 @@ c中有三种链接属性：外链接、内链接、无链接属性。
 
 如果函数仅仅被同一个源文件调用时，我们就应该声明该函数为static。
 
-####  野指针
+###  野指针
 
 1. 指针变量未初始化
 2. 删除内存后没有将该指针置为NULL
@@ -119,7 +182,7 @@ c中有三种链接属性：外链接、内链接、无链接属性。
 
 ![1591943688053](pic/1591943688053.png)
 
-#### sizeof用法
+### sizeof用法
 
 判断数据类型或者表达式长度的运算符，对 sizeof() 的处理都是在编译阶段进行。
 
@@ -138,7 +201,7 @@ class B{ char a; }; class B{};
 class C{ int a; char b;};
 ```
 
-###### 确定类大小的几个原则：
+#### 确定类大小的几个原则：
 
 1. 为类的非静态成员数据的类型大小之和
 2. 有编译器额外加入的成员变量的大小，用来支持语言的某些特性（如：指向虚函数的指针）
@@ -147,7 +210,7 @@ class C{ int a; char b;};
 
 - **判断变量或者数组的大小**
 
-#### 进程间通讯方式
+### 进程间通讯方式
 
 1. 管道：速度慢，容量有限，只有父子进程能通讯
 2. FIFO：任何进程间都能通讯，但速度慢
@@ -155,7 +218,7 @@ class C{ int a; char b;};
 4. 信号量：不能传递复杂消息，只能用来同步
 5. 共享内存区：能够很容易控制容量，速度快，但要保持同步
 
-#### 线程间通信方式
+### 线程间通信方式
 
 1. volatile 和 synchronized 关键字
 2. 等待 / 通知机制
@@ -163,7 +226,7 @@ class C{ int a; char b;};
 4. Thread.join() 的使用
 5. ThreadLocal
 
-#### 深拷贝和浅拷贝
+### 深拷贝和浅拷贝
 
 > 浅拷贝只复制指向某个对象的指针，而不复制对象本身，新旧对象还是共享同一块内存。
 >
@@ -171,62 +234,18 @@ class C{ int a; char b;};
 >
 > 链表的复制为例
 
-### 抽象容器
+### LRU算法[@](https://www.cnblogs.com/kyoner/p/11179766.html)
 
-- #### vector
+LRU的全称是Least Recently Used，一种缓存淘汰常用策略。类似的还有LFU，也即按照使用频率淘汰策略。LRU认为最近使用过的数据应该是有用的，很久都没用过的数据应该是无用的，缓存满了就优先删除那些很久没有用过的数据。 
 
-1. 构造函数
-   vector():创建一个空vector
-   vector(int nSize):创建一个vector,元素个数为nSize
-   vector(int nSize,const t& t):创建一个vector，元素个数为nSize,且值均为t
-   vector(const vector&):复制构造函数
-   vector(begin,end):复制[begin,end)区间内另一个数组的元素到vector中
-2. 增加函数
-   void push_back(const T& x):向量尾部增加一个元素X
-   iterator insert(iterator it,const T& x):向量中迭代器指向元素前增加一个元素x
-   iterator insert(iterator it,int n,const T& x):向量中迭代器指向元素前增加n个相同的元素x
-   iterator insert(iterator it,const_iterator first,const_iterator last):向量中迭代器指向元素前插入另一个相同类型向量的[first,last)间的数据
-3. 删除函数
-   iterator erase(iterator it):删除向量中迭代器指向元素
-   iterator erase(iterator first,iterator last):删除向量中[first,last)中元素
-   void pop_back():删除向量中最后一个元素
-   void clear():清空向量中所有元素
-4. 遍历函数
-   reference at(int pos):返回pos位置元素的引用
-   reference front():返回首元素的引用
-   reference back():返回尾元素的引用
-   iterator begin():返回向量头指针，指向第一个元素
-   iterator end():返回向量尾指针，指向向量最后一个元素的下一个位置
-   reverse_iterator rbegin():反向迭代器，指向最后一个元素
-   reverse_iterator rend():反向迭代器，指向第一个元素之前的位置
-5. 判断函数
-   bool empty() const:判断向量是否为空，若为空，则向量中无元素
-6. 大小函数
-   int size() const:返回向量中元素的个数
-   int capacity() const:返回当前向量所能容纳的最大元素值
-   int max_size() const:返回最大可允许的vector元素数量值
-7. 其他函数
-   void swap(vector&):交换两个同类型向量的数据
-   void assign(int n,const T& x):设置向量中第n个元素的值为x
-   void assign(const_iterator first,const_iterator last):向量中[first,last)中元素设置成当前向量元素
+**算法描述：**
 
-- #### map
-  - 插入元素
+> 设计一种数据结构，首先构造函数接受一个capacity参数作为缓存的最大容量，然后实现两个API：
+>
+> put(key, val) 方法插入新的或更新已有键值对，如果缓存已满的话，要删除那个最久没用过的键值对以腾出位置插入。
+>
+>  get(key) 方法获取 key 对应的 val，如果 key 不存在则返回 -1。
 
-  ```c++
-  // 定义一个map对象
-  map<int, string> mapStudent;
-   
-  // 第一种 用insert函數插入pair
-  mapStudent.insert(pair<int, string>(000, "student_zero"));
-   
-  // 第二种 用insert函数插入value_type数据
-  mapStudent.insert(map<int, string>::value_type(001, "student_one"));
-   
-  // 第三种 用"array"方式插入
-  mapStudent[123] = "student_first";
-  mapStudent[456] = "student_second";
-  ```
+**数据结构**
 
-  
-
+ ![img](pic/1566782-20190713105655398-1688289084.jpg) 

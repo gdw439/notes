@@ -4,22 +4,22 @@
 
 ## 算法专题
 
-- #### 动态规划
+### 动态规划
 
 <img src="https://pic.leetcode-cn.com/1f95da43d1bdeebdd1213bb804034ddc5f906dc61451cd63f2b5ab5d0eb33b33-%E3%80%8C%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E3%80%8D%E9%97%AE%E9%A2%98%E6%80%9D%E8%80%83%E6%96%B9%E5%90%91.png" alt="img" style="zoom:67%;" />
 
-- #### 其他
+### 其他
 
 ## 经典问题
 
-- #### 排序
+### 排序
 
-  - 稳定性：两个相等的数,经过排序之后,其在序列的前后位置顺序不变，则是稳定的。
-    - **稳定性排序**：冒泡排序，插入排序、归并排序、基数排序
-    - **不稳定排序**：选择排序、快速排序、希尔排序、堆排序
-  - 原地排序： 不占用额外内存资源的排序
+- 稳定性：两个相等的数,经过排序之后,其在序列的前后位置顺序不变，则是稳定的。
+  - **稳定性排序**：冒泡排序，插入排序、归并排序、基数排序
+  - **不稳定排序**：选择排序、快速排序、希尔排序、堆排序
+- 原地排序： 不占用额外内存资源的排序
 
-- #### 分苹果问题
+### 分苹果问题
 
 **一种是列出符合条件的解，可使用递归；**
 
@@ -42,7 +42,7 @@ int solution(int m,int n){
 } 
 ```
 
-- #### 斐波那契（[青蛙跳台阶](https://www.nowcoder.com/practice/8c82a5b80378478f9484d87d1c5f12a4?tpId=13&tqId=11161&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)）
+### 斐波那契（[青蛙跳台阶](https://www.nowcoder.com/practice/8c82a5b80378478f9484d87d1c5f12a4?tpId=13&tqId=11161&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)）
 
 **要求计算第n项，非递归的实现**
 
@@ -60,7 +60,7 @@ int solution(int m,int n){
     }
 ```
 
-- #### [二叉树重建](https://www.nowcoder.com/practice/8a19cbe657394eeaac2f6ea9b0f6fcf6?tpId=13&tqId=11157&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)（先序+中序->二叉树）
+### 二叉树重建（[先序+中序](https://www.nowcoder.com/practice/8a19cbe657394eeaac2f6ea9b0f6fcf6?tpId=13&tqId=11157&tPage=1&rp=1&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)）
 
 简单的递归实现，思路清晰，简单的思想就是通过建立子函数，每次传入子树的先序和中序序列，递归求解
 
@@ -83,7 +83,7 @@ TreeNode* reConstructBinaryTree(vector<int> pre, int sp, int ep, vector<int> in,
 	return root;
 }
 ```
-- #### 出栈顺序验证（[栈模拟](https://www.nowcoder.com/practice/d77d11405cc7470d82554cb392585106?tpId=13&tqId=11174&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)）
+### 出栈顺序验证（[栈模拟](https://www.nowcoder.com/practice/d77d11405cc7470d82554cb392585106?tpId=13&tqId=11174&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking)）
 
 ```c++
 bool IsPopOrder(vector<int> pushV,vector<int> popV) {
@@ -99,7 +99,7 @@ bool IsPopOrder(vector<int> pushV,vector<int> popV) {
     return stack.empty();
 }
 ```
-- #### 查找二叉树转双链表([链接](https://www.nowcoder.com/practice/947f6eb80d944a84850b0538bf0ec3a5?tpId=13&tqId=11179&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking))
+### 查找二叉树转双链表([链接](https://www.nowcoder.com/practice/947f6eb80d944a84850b0538bf0ec3a5?tpId=13&tqId=11179&tPage=2&rp=2&ru=/ta/coding-interviews&qru=/ta/coding-interviews/question-ranking))
 
 ```c++
     TreeNode* pre      = NULL;
@@ -118,7 +118,7 @@ bool IsPopOrder(vector<int> pushV,vector<int> popV) {
     }
 ```
 
-- ##### 逆序数对
+### 逆序数对
 
 ```c++
 /* 归并排序：
@@ -154,7 +154,7 @@ int divide(vector<int>& nums, vector<int>& res, int head, int tail){
     }
 ```
 
-- #### 字典序算法
+### 字典序算法
 
 ```shell
 # 346987521的下一个字典序
@@ -171,7 +171,7 @@ int divide(vector<int>& nums, vector<int>& res, int head, int tail){
 则347125689为346987521的下一个排列
 ```
 
-- ##### 删除链表的重复节点
+### 删除链表重复节点
 
 ```c++
 // 非递归方法
@@ -203,7 +203,7 @@ public:
 
 ```
 
-- #### 搜索旋转排序数组（[字节经典](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)）
+### 搜索旋转排序数组（[字节经典](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)）
 
 题目：假设排序数组进行了循环移N位操作，试用最少的时间查找某个值是否存在
 
@@ -235,7 +235,7 @@ int search(vector<int>& nums, int target) {
     }
 ```
 
-- #### [ 在排序数组中查找数字 I](https://leetcode-cn.com/problems/zai-pai-xu-shu-zu-zhong-cha-zhao-shu-zi-lcof/)
+### 排序数组中查找数字 I[ @](https://leetcode-cn.com/problems/zai-pai-xu-shu-zu-zhong-cha-zhao-shu-zi-lcof/)
 
 ```c++
 class Solution {
@@ -259,164 +259,153 @@ public:
 };
 ```
 
-- ##### 扔鸡蛋问题（[经典动态规划]( https://leetcode-cn.com/problems/super-egg-drop/solution/ji-dan-diao-luo-by-leetcode-solution-2/ )）
+### 扔鸡蛋问题（[经典动态规划]( https://leetcode-cn.com/problems/super-egg-drop/solution/ji-dan-diao-luo-by-leetcode-solution-2/ )）
 
-  题目：有M层楼，已知在第N层楼以上掉落鸡蛋会碎，给你K个鸡蛋，让你用最少的操作T试探出这一楼层N。
+题目：有M层楼，已知在第N层楼以上掉落鸡蛋会碎，给你K个鸡蛋，让你用最少的操作T试探出这一楼层N。
 
-  思路：逆向思维。
+思路：逆向思维。
 
-  该问题等价于：给你T次操作和K个鸡蛋，我们保证能找到的最高的楼层N。于是，当我们扔下鸡蛋，存在两种情况：
+该问题等价于：给你T次操作和K个鸡蛋，我们保证能找到的最高的楼层N。于是，当我们扔下鸡蛋，存在两种情况：
 
-  1. 鸡蛋没碎，这样在该楼层上方存在f(T-1,K)层楼；
-  2. 鸡蛋碎了，这样在该楼层下方可以检测f(T-1,K-1)层楼；
+1. 鸡蛋没碎，这样在该楼层上方存在f(T-1,K)层楼；
+2. 鸡蛋碎了，这样在该楼层下方可以检测f(T-1,K-1)层楼；
 
-  其状态转移方程为：
-  $$
-  f(T,K)=1+f(T-1,K-1)+f(T-1,K)
-  $$
-  边界条件为：$T\geq1$时，$f(T,1)=T$，当$K\geq1$时， $f(1, K)=1$。
+其状态转移方程为：
+$$
+f(T,K)=1+f(T-1,K-1)+f(T-1,K)
+$$
+边界条件为：$T\geq1$时，$f(T,1)=T$，当$K\geq1$时， $f(1, K)=1$。
 
-  ```c++
-  class Solution {
-  public:
-      int superEggDrop(int K, int N) {
-          if (N == 1) {
-              return 1;
-          }
-          vector<vector<int>> f(N + 1, vector<int>(K + 1));
-          for (int i = 1; i <= K; ++i) {
-              f[1][i] = 1;
-          }
-          int ans = -1;
-          for (int i = 2; i <= N; ++i) {
-              for (int j = 1; j <= K; ++j) {
-                  f[i][j] = 1 + f[i - 1][j - 1] + f[i - 1][j];
-              }
-              if (f[i][K] >= N) {
-                  ans = i;
-                  break;
-              }
-          }
-          return ans;
-      }
-  };
-  ```
-
-  
-
-- ##### 毒药问题
-
-- ##### 卡特兰数
-
-- ##### 孤岛问题
-
-- ##### 子串匹配
-
-  - 最大对称子串问题
-  
-  - 最大公子串问题
-  
-  - 子串匹配问题
-  
-  - 最大公子序列问题
-  
-  - [最长无重复子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/solution/javati-jie-3wu-zhong-fu-zi-fu-de-zui-chang-zi-chua/)
-  
-    ```c++
-    // 滑窗调整窗口的左边界和右边界，保持滑窗内不重复，同时求取最大值，思路
-    int lengthOfLongestSubstring(string s) {
-        vector<int> m(128, 0);
-        int ans = 0;
-        int i = 0;
-        for (int j = 0; j < s.size(); j++) {
-            i = max(i, m[s[j]]);
-            m[s[j]] = j + 1;
-            ans = max(ans, j - i + 1);
+```c++
+class Solution {
+public:
+    int superEggDrop(int K, int N) {
+        if (N == 1) {
+            return 1;
+        }
+        vector<vector<int>> f(N + 1, vector<int>(K + 1));
+        for (int i = 1; i <= K; ++i) {
+            f[1][i] = 1;
+        }
+        int ans = -1;
+        for (int i = 2; i <= N; ++i) {
+            for (int j = 1; j <= K; ++j) {
+                f[i][j] = 1 + f[i - 1][j - 1] + f[i - 1][j];
+            }
+            if (f[i][K] >= N) {
+                ans = i;
+                break;
+            }
         }
         return ans;
     }
-    ```
-  
-  - [K个一组反转列表](https://leetcode-cn.com/problems/reverse-nodes-in-k-group/solution/di-gui-si-wei-ru-he-tiao-chu-xi-jie-by-labuladong/)（字节跳动一面9.28）
-  
+};
+```
+
+### K个一组反转链表[@](https://leetcode-cn.com/problems/reverse-nodes-in-k-group/solution/di-gui-si-wei-ru-he-tiao-chu-xi-jie-by-labuladong/)
+
+```c++
+ListNode* reverseKGroup(ListNode* head, int k) {
+    ListNode *root = new ListNode(0, head);
+    ListNode *next, *prev = root, *curr = head;
+
+    int lens = 0;
+    for(lens; head!=NULL; ++lens){
+        head = head->next;
+    }
+
+    for(int i=0; i<lens/k; ++i){
+        for(int j=1; j<k; ++j){
+            next = curr->next;
+            curr->next = next->next;
+            next->next = prev->next;
+            prev->next = next;
+        }
+        prev = curr;
+        curr = curr->next;
+    }
+    return root->next;
+}
+```
+
+### 其他
+
+##### 毒药问题
+
+##### 卡特兰数
+
+##### 孤岛问题
+
+##### 子串匹配
+
+- 最大对称子串问题
+
+- 最大公子串问题
+
+- 子串匹配问题
+
+- 最大公子序列问题
+
+- [最长无重复子串](https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/solution/javati-jie-3wu-zhong-fu-zi-fu-de-zui-chang-zi-chua/)
+
   ```c++
-  // 内循环
-  /** 反转区间 [a, b) 的元素，注意是左闭右开 */
-  ListNode reverse(ListNode a, ListNode b) {
-      ListNode pre, cur, nxt;
-      pre = null; cur = a; nxt = a;
-      // while 终止的条件改一下就行了
-      while (cur != b) {
-          nxt = cur.next;
-          cur.next = pre;
-          pre = cur;
-          cur = nxt;
+  // 滑窗调整窗口的左边界和右边界，保持滑窗内不重复，同时求取最大值，思路
+  int lengthOfLongestSubstring(string s) {
+      vector<int> m(128, 0);
+      int ans = 0;
+      int i = 0;
+      for (int j = 0; j < s.size(); j++) {
+          i = max(i, m[s[j]]);
+          m[s[j]] = j + 1;
+          ans = max(ans, j - i + 1);
       }
-      // 返回反转后的头结点
-      return pre;
-  }
-  
-  // 外循环
-  ListNode reverseKGroup(ListNode head, int k) {
-      if (head == null) return null;
-      // 区间 [a, b) 包含 k 个待反转元素
-      ListNode a, b;
-      a = b = head;
-      for (int i = 0; i < k; i++) {
-          // 不足 k 个，不需要反转，base case
-          if (b == null) return head;
-          b = b.next;
-      }
-      // 反转前 k 个元素
-      ListNode newHead = reverse(a, b);
-      // 递归反转后续链表并连接起来
-      a.next = reverseKGroup(b, k);
-      return newHead;
+      return ans;
   }
   ```
 
+  
+
 ## 数据结构
 
-- #### 二叉树遍历
+### 二叉树遍历
 
-  > 二叉树的遍历方式分为3种：前序遍历（A->B->C）、中序遍历（B->A->C）、后序遍历（B->C->A）。
-  >
-  > 已知前序和中序，后序和中序遍历序列之后，可以唯一确定一棵二叉树。但是，只知道前序和后序遍历序列，是无法知道哪个结点是左子树还算右子树。
-  >
-  > 另外的遍历方式将遍历分为深度优先遍历（DFS）和广度优先遍历（BFS）。深度优先遍历和前序遍历相似，但左右节点上没有先后顺序，此时广度优先遍历则是分层遍历，是一种自上而下的遍历方式。
+> 二叉树的遍历方式分为3种：前序遍历（A->B->C）、中序遍历（B->A->C）、后序遍历（B->C->A）。
+>
+> 已知前序和中序，后序和中序遍历序列之后，可以唯一确定一棵二叉树。但是，只知道前序和后序遍历序列，是无法知道哪个结点是左子树还算右子树。
+>
+> 另外的遍历方式将遍历分为深度优先遍历（DFS）和广度优先遍历（BFS）。深度优先遍历和前序遍历相似，但左右节点上没有先后顺序，此时广度优先遍历则是分层遍历，是一种自上而下的遍历方式。
 
-  **DFS实现：**
+**DFS实现：**
 
-  数据结构：栈
+数据结构：栈
 
-  父节点入栈，父节点出栈，先右子节点入栈，后左子节点入栈。递归遍历全部节点即可
+父节点入栈，父节点出栈，先右子节点入栈，后左子节点入栈。递归遍历全部节点即可
 
-  **BFS实现：**
+**BFS实现：**
 
-  数据结构：队列
+数据结构：队列
 
-  父节点入队，父节点出队列，先左子节点入队，后右子节点入队。递归遍历全部节点即可
+父节点入队，父节点出队列，先左子节点入队，后右子节点入队。递归遍历全部节点即可
 
-  ![1579182355860](./pic/1579182355860.png)
+![1579182355860](./pic/1579182355860.png)
 
-  - ##### 习题1
+- ##### 举例
 
-  ![1579182850479](./pic/1579182850479.png)
+![1579182850479](./pic/1579182850479.png)
 
-  > 前序遍历：ABCDEFGHK
-  >
-  > 中序遍历：BDCAEHGKF
-  >
-  > 后序遍历：DCBHKGFEA
+> 前序遍历：ABCDEFGHK
+>
+> 中序遍历：BDCAEHGKF
+>
+> 后序遍历：DCBHKGFEA
 
-  - ##### 习题2
-  
-- ####  给定坐标系内的一个多边形和一个点，怎么判断该点是否在矩形内部？ 
+###  点与多边形 
 
-  - 思路：通过由该点射出的射线与各边交点的奇偶性判断是否在多边形内部。
+**给定坐标系内的一个多边形和一个点，怎么判断该点是否在矩形内部？** 
 
-   ![img](pic/061456221234057.jpg) 
+**思路**：通过由该点射出的射线与各边交点的奇偶性判断是否在多边形内部。
 
-- #### 哈夫曼树构造过程：[链接](https://blog.csdn.net/qq_29519041/article/details/81428934)
+ ![img](pic/061456221234057.jpg) 
 
-T
+### 哈夫曼树（[链接](https://blog.csdn.net/qq_29519041/article/details/81428934)）
+

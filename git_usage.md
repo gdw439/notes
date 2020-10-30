@@ -1,6 +1,6 @@
-# git usage
+# git常用命令
 
-- #### Clone the file from github
+- #### 克隆工程文件
 
 ```bash
 # fisrt method, maybe forget down sub-folder in it.
@@ -13,7 +13,7 @@ git clone --recursive https://github.com/gdw439/notes
 git submodule update --init --recursive  
 ```
 
-- #### Initlize git
+- #### 初始化git自己的名字和邮箱
 
 ```bash
 # 1. 配置自己的git的名字和邮箱
@@ -32,24 +32,33 @@ ssh-keygen -t rsa -C "email@example.com"
 # 5. 拷贝id_rsa.pub中所有内容，粘贴到github的key中
 ```
 
-- #### update local code
+- #### 文件改动和上传
 
 ```shell
-git commit -m "添加你的注释,一般是一些更改信息"
-```
+# 首先， 查看当前工程中的状态，以免忘记保存未保存文件
+git status
 
-- #### add new file to git
-
-```shell
-# .默认将所有文件都添加
-git add . 
-```
-
-- #### pull code to remote hub
-
-```shell
+# 如果需要的话，从远程仓库拉取文件，以保证和远程仓库的同步
 git pull origin master
-# 上传
+
+# 然后， 编写代码后，将文件全部添加到暂存区 / 添加单个文件
+git add .   / git add fiename.mm
+
+# 接着， 将代码添加备注，介绍自己做了哪方面的修改
+git commit -m "改动的内容为xxx"
+
+# 如果需要更新远程仓库， 则需要将其推送到远程仓库
 git push origin master
+```
+
+- #### 修改远程仓库地址方法
+
+```shell
+# 修改命令
+git remote set-url origin <url>
+
+# 先删除后添加
+git remote rm origin
+git remote add origin [url]
 ```
 

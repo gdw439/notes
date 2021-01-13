@@ -1,30 +1,59 @@
 # 编程基础
 
-## 编程常用
+## 常用函数
 
-### 函数技巧
+### 标准库函数
 
-- ##### 输入函数
+- **char *gets(char *str);** 
 
-> **char *gets(char *str);** 
->
-> 功能是从输入缓冲区中读取一个字符串存储到字符指针变量 str 所指向的内存空间。遇到回车后执行结束。
->
-> 使用 gets() 时，系统会将最后“敲”的换行符从缓冲区中取出来，然后丢弃，所以缓冲区中不会遗留换行符。
->
-> 它在执行前不会主动清除缓存空间，只是执行后才清缓存区，因此每次新接收变量前，执行getchar()。
->
-> **int scanf(const char *format, ...);**
->
-> 功能是从键盘输入的字符转化为“输入控制符”所规定格式的数据，然后存入以输入参数的值为地址的变量中。
->
-> ```c
-> // 读取含空格的字符串，遇到回车结束，并抛弃字符串中的'\n'
-> scanf("%[^\n]%*c",str);
-> ```
->
+功能是从输入缓冲区中读取一个字符串存储到字符指针变量 str 所指向的内存空间。遇到回车后执行结束。
 
-### 抽象容器
+使用 gets() 时，系统会将最后“敲”的换行符从缓冲区中取出来，然后丢弃，所以缓冲区中不会遗留换行符。它在执行前不会主动清除缓存空间，只是执行后才清缓存区，因此每次新接收变量前，执行getchar()。
+
+- **int scanf(const char *format, ...);**
+
+功能是从键盘输入的字符转化为“输入控制符”所规定格式的数据，然后存入以输入参数的值为地址的变量中。
+
+```c
+// 读取含空格的字符串，遇到回车结束，并抛弃字符串中的'\n'
+scanf("%[^\n]%*c",str);
+```
+
+#### 执行shell命令[@](https://www.cnblogs.com/niocai/archive/2011/07/20/2111896.html)
+
+-   **int system(const char * string);** 
+
+位于头文件**#include<stdlib.h>**中，system()会调用fork()产生子进程，由子进程来调用/bin/sh-cstring来执行参数string字符串所代表的命令，此命令执行完后随即返回原调用的进程。在调用system()期间SIGCHLD 信号会被暂时搁置，SIGINT和SIGQUIT 信号则会被忽略。返回值 如果system()在调用/bin/sh时失败则返回127，其他失败原因返回-1。若参数string为空指针(NULL)，则返回非零值。如果system()调用成功则最后会返回执行shell命令后的返回值，但是此返回值也有可能为system()调用/bin/sh失败所返回的127，因此最好能再检查errno 来确认执行成功。**附加说明 在编写具有SUID/SGID权限的程序时请勿使用system()，system()会继承环境变量，通过环境变量可能会造成系统安全的问题。**
+
+```c
+#include<stdlib.h>
+main(){
+    system(“ls -al /etc/passwd /etc/shadow”);
+}
+```
+
+-   **FILE * popen( const char * command,const char * type);** 
+
+位于 **\#include<stdio.h>** 中， 函数说明 popen()会调用fork()产生子进程，然后从子进程中调用/bin/sh -c来执行参数command的指令。参数type可使用“r”代表读取，“w”
+代表写入。依照此type值，popen()会建立管道连到子进程的标准输出设备或标准输入设备，然后返回一个文件指针。随后进程便可利用此文件指针来读取子进程的输出设备或是写入到子进程的标准输入设备中。此外，所有使用文件指针(FILE*)操作的函数也都可以使
+用，除了fclose()以外。返回值 若成功则返回文件指针，否则返回NULL，错误原因存于errno中。错误代码 EINVAL参数type不合法。
+**注意事项 在编写具SUID/SGID权限的程序时请尽量避免使用popen()，popen()会继承环境变量，通过环境变量可能会造成系统安全的问题。**
+
+```c
+#include<stdio.h>
+main(){
+    FILE * fp;
+    char buffer[80];
+    fp=popen(“cat /etc/passwd”,”r”);
+    fgets(buffer,sizeof(buffer),fp);
+    printf(“%s”,buffer);
+    pclose(fp);
+}
+```
+
+
+
+## 抽象容器
 
 - #### vector
 
@@ -303,6 +332,3 @@ LRU的全称是Least Recently Used，一种缓存淘汰常用策略。类似的�
 7. 确保您不是在访问空指针。
 
 - **借助调试工具**
-
-
-

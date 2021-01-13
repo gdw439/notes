@@ -1,2 +1,10 @@
-# notes
-The hub is used to put down some notes about my work, learning and my life. Sometimes the content is not suitable to open for other people to view, just for myself.
+该仓库用于记录
+
+- 工作和学习生活中遇到的算法上的、编程语言（主要是C/C++和python）上的技巧，或是收集一些面试经常遇到的问题。
+- 项目上的问题和解决方法。
+
+不定期更新。
+
+by vortex
+
+2020.11.19
